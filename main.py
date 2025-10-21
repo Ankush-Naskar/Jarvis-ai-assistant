@@ -111,7 +111,7 @@ if __name__ == "__main__":
 
                 # Wake up command
                 word = r.recognize_google(audio)
-                if word.lower() in ["hello", "jarvis", "hello jarvis"]:
+                if word.lower() in ["jarvis", "hello jarvis"]:
                     speak("Yes, how can i help you?")
                     print("jarvis active...")
                     last_active = time.time() # Time-limit system
