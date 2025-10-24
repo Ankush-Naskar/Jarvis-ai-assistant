@@ -139,4 +139,4 @@ if __name__ == "__main__":
             print("")
             # Guide
             print("say 'jarvis' to start"
-                " and 'stop program' to stop jarvis\n")
+                " and 'stop jarvis' to stop jarvis\n")

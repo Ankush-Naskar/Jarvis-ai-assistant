@@ -3,7 +3,7 @@ from plyer import notification
 def notify_start():
     notification.notify(
         title="Jarvis",
-        message="Jarvis is listening!\nSay 'jarvis' to start and 'stop program' to stop.",
+        message="Jarvis is listening!\nSay 'jarvis' to start and 'stop jarvis' to stop.",
         timeout=5
     )
 

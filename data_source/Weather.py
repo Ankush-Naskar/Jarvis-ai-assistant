@@ -51,7 +51,7 @@ async def get_weather_by_date(location, target_date):
                     avg_wind = statistics.mean(wind_speeds) if wind_speeds else None
                     avg_pressure = statistics.mean(pressures) if pressures else None
 
-                    speech = (f"In {location}, average temperature is {daily.temperature}°C"
+                    speech = (f"In {location}, average temperature is expected to be {daily.temperature}°C"
                         f" with a high of {daily.highest_temperature}°C and low of {daily.lowest_temperature}°C."
                         f" The average wind speed is expected to be {avg_wind:.1f} km/h, with average atmospheric pressure of {avg_pressure:.1f} mb. ")
                     
@@ -62,23 +62,24 @@ async def get_weather_by_date(location, target_date):
                     # Determine day type
                     conditions = [hourly.description for hourly in daily.hourly_forecasts]
                     if any('rain' in c.lower() for c in conditions):
-                        weather_warning = "and it can be a Rainy Day. Please consider carrying an umbrella just in case."
+                        weather_warning = "and rain is expected. Please consider carrying an umbrella just in case."
                     elif any('cloud' in c.lower() for c in conditions):
-                        weather_warning = "and there's a chance of a Cloudy Day. You might see overcast skies at times."
+                        weather_warning = "and skies are expected to remain mostly cloudy, with occasional overcast periods."
                     elif any('thunderstorm' in c.lower() for c in conditions):
-                        weather_warning = "and there is a chance of thunderstorms, so staying indoors during storm hours would be the safest option."
+                        weather_warning = "and thunderstorms are possible, so staying indoors during storm hours would be safest." 
                     elif any('fog' in c.lower() for c in conditions):
-                        weather_warning = "and there may be fog in the early morning or night, which could reduce visibility."
+                        weather_warning = "and fog may develop in the early morning or night, which could reduce visibility."  
                     elif any('mist' in c.lower() for c in conditions):
-                        weather_warning = "and there may be fog in the early morning or night, which could reduce visibility."
+                        weather_warning = "and mist may form in low-lying areas, especially around dawn or dusk." 
                     else:
-                        weather_warning = "and it is likely to be a sunny day with mostly clear skies."
+                        weather_warning = "and it is expected to be sunny with mostly clear skies."  
+
                     if avg_wind >= 40:
-                        weather_warning1 = "and strong winds are expected today."
+                        weather_warning1 = "and strong winds are expected."  
                     elif avg_wind >= 30:
-                        weather_warning1 = "and it may be a windy day with noticeable gusts."
+                        weather_warning1 = "and it may be a windy day with noticeable gusts." 
                     else:
-                        weather_warning1 = ""
+                        weather_warning1 = "" 
 
                     return speech + " " + weather_warning + " " + weather_warning1
 
