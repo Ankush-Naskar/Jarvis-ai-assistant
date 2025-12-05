@@ -1,9 +1,9 @@
 from openai import OpenAI
-import User_info
+import user_settings
 
 def AI(prompt):
     try:
-        client = OpenAI(api_key=User_info.OPENAI_API_KEY)
+        client = OpenAI(api_key=user_settings.OPENAI_API_KEY)
 
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",

@@ -1,0 +1,39 @@
+{
+    "videos": {
+    "despacito": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+    "shape of you": "https://www.youtube.com/watch?v=JGwWNGJdvx8",
+    "believer": "https://www.youtube.com/watch?v=7wtfhZwyrcc"
+},
+
+    "links": {
+    "google": "https://google.com",
+    "youtube": "https://youtube.com",
+    "wikipedia": "https://www.wikipedia.org",
+
+    "amazon": "https://amazon.com",
+    "flipkart": "https://flipkart.com",
+    
+    "facebook": "https://facebook.com",
+    "linkedin": "https://linkedin.com",
+    "instagram": "https://instagram.com",
+    "twitter": "https://twitter.com",
+    "github": "https://github.com",
+    "reddit": "https://www.reddit.com",
+    "discord": "https://discord.com",
+
+    "hackerrank": "https://hackerrank.com",
+    "leetcode": "https://leetcode.com",
+
+    "chatgpt": "https://chat.openai.com",
+    "claude_ai": "https://claude.ai",
+    "gemini": "https://gemini.google.com",
+    
+    "netflix": "https://www.netflix.com",
+    "hotstar": "https://www.hotstar.com",
+
+    "whatsapp web": "https://web.whatsapp.com",
+    "telegram web": "https://web.telegram.org",
+    "whatsapp": "https://web.whatsapp.com",
+    "telegram": "https://web.telegram.org"
+}
+}

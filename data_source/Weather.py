@@ -2,10 +2,10 @@
 import python_weather
 from datetime import datetime, timedelta
 import statistics
-import User_info
+import user_settings
 # from jarvis_system.speak_system import speak
 
-user_location = User_info.LOCATION_FOR_WEATHER
+user_location = user_settings.LOCATION_FOR_WEATHER
 
 # =======================
 # Current weather report

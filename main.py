@@ -1,84 +1,40 @@
 import speech_recognition as sr
-import webbrowser
 import time
-import asyncio
-from datetime import datetime, timedelta
-from data_source import music_library, URLs, openAi
-from jarvis_system.speak_system import speak
-from jarvis_system import notification_system
-from data_source.Weather import get_current_weather, get_weather_by_date
-import User_info
+from jarvis_modules.file_handling import create_user_info
+create_user_info()
+from jarvis_modules import notification_system, command_handling
+
+from jarvis_modules.speak_system import speak
+from data_source import openAi
+import user_settings
 
 # Guide
 print("say 'jarvis' to start"
         " and 'stop program' to stop jarvis\n")
 
 
-
 # Processes voice commands
 def processCommand(c):
-    # speak(c)
 
     # Opening links.
     if c.lower().startswith("open"):
-        search = " ".join(c.lower().split(" ")[1:])
-        link_ = URLs.links.get(search)
-        if link_:
-            speak(f"opening {search}")
-            webbrowser.open(link_)
-        else:
-            speak(f"{search} is not Predefined. Searching in google")
-            query = search.replace(" ", "+")
-            link_ = f"https://www.google.com/search?q={query}"
-            webbrowser.open(link_)
-        
+        command_handling.open_links(c)
 
     # Google search.
     elif c.lower().startswith("search"):
-        search = " ".join(c.lower().split(" ")[1:])
-        speak(f"Searching {search} in google")
-        query = search.replace(" ", "+")
-        link_ = f"https://www.google.com/search?q={query}"
-        webbrowser.open(link_) 
-        
+        command_handling.google_search(c)
 
     # Playing songs
     elif c.lower().startswith("play"):
-        song = " ".join(c.lower().split(" ")[1:])
-        link_ = music_library.music.get(song)
-        if link_:
-            speak(f"Playing {song}")
-            webbrowser.open(link_)
-        else:
-            speak(f"Playing {song} from YouTube")
-            query = song.replace(" ", "+")
-            song_link = f"https://www.google.com/search?q={query}+site:youtube.com&btnI"
-            webbrowser.open(song_link)
+        command_handling.play_YT_song_video(c)
 
     # Weather updates
-    
     elif "weather update" in c.lower():
-        Location = User_info.LOCATION_FOR_WEATHER
-        
-        if "current" in c.lower():
-            l = asyncio.run(get_current_weather())
-            speak(l)
-        elif "today" in c.lower():
-            today = datetime.today().date()
-            l = asyncio.run(get_weather_by_date(Location, today))
-            speak("today," + l)
-        elif "tomorrow" in c.lower():
-            tomorrow = (datetime.today().date() + timedelta(days=1))
-            l = asyncio.run(get_weather_by_date(Location, tomorrow))
-            speak("tomorrow," + l)
-        else:
-            l = asyncio.run(get_current_weather())
-            speak(l)
-
+        command_handling.weather_update(c)
 
     # Ai integration --OpenAi
-    # else:
-    #     speak(openAi.AI(c))
+    else:
+        speak(openAi.AI(c))
 
 
             
@@ -90,7 +46,7 @@ if __name__ == "__main__":
 
     # Time Checking --- notification 
     last_active = time.time()
-    timeout_duration = User_info.DURATION_OF_TIMEOUT # time in second
+    timeout_duration = user_settings.DURATION_OF_TIMEOUT # time in second
 
 
     while True:
